@@ -1,7 +1,8 @@
 package Controller;
 
 import Model.Model;
-import Model.View;
+import View.View;
+
 class Controller implements java.awt.event.ActionListener {
 
 	
@@ -14,7 +15,7 @@ class Controller implements java.awt.event.ActionListener {
 	public void actionPerformed(java.awt.event.ActionEvent e){
 		
 		System.out.println("Controller: acting on Model");
-		model.incrementValue();
+		//model.incrementValue();
 	} 
 	public void addModel(Model m){
 		System.out.println("Controller: adding model");
@@ -27,7 +28,7 @@ class Controller implements java.awt.event.ActionListener {
 	} 
 
 	public void initModel(int x){
-		model.setValue(x);
+		//model.setValue(x);
 	} 
 
 } 

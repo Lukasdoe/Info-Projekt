@@ -10,7 +10,6 @@ public class Model extends java.util.Observable {
 	
 	public void createMaze() {
 		maze = Maze_Generator.createMaze(5, 5, 5);
-		System.out.println(maze.toString());
 	}
 	
 	public Maze getMaze() {
