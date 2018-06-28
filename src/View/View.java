@@ -1,80 +1,88 @@
-package View;     //Model Nutzen
-import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.geom.Line2D;
-import java.util.Observable;
+package View;
+
+import Model.Model;
 import Controller.controller;
-import javax.swing.JFrame;
-import Model.Maze_Generator;
+import java.awt.Button;
+import java.awt.Panel;
+import java.awt.Frame;
+import java.awt.TextField;
+import java.awt.Label;
+import java.awt.event.WindowEvent;	//for CloseListener()
+import java.awt.event.WindowAdapter;	//for CloseListener()
+import java.lang.Integer;		//int from Model is passed as an Integer
+import java.util.Observable;		//for update();
 
+public class View implements java.util.Observer {
 
- 
+	//attributes as must be visible within class
+	private TextField myTextField;
+	private Button button; 
 
- public	class View implements java.util.Observer{
+	//private Model model;		//Joe: Model is hardwired in, 
+					//needed only if view initialises model (which we aren't doing)
+	
+	public View() {
+		System.out.println("View()");	
 		
-		private TextField myTextField;
-		private Button button; 
-	    private Line2D D; 
-	    
-	   
-	    
- 
-	    
-		public View() {
-			
-			System.out.println("View()");	
-			paint(1,2,1,2);
-			Line2D D = new Line2D.Double(3,3,3,3);
-			Frame frame 		= new Frame("simple MVC");
-			frame.add("North", new Label("Maze Runner"));
+		//frame in constructor and not an attribute as doesn't need to be visible to whole class
+		Frame frame 		= new Frame("simple MVC");
+		frame.add("North", new Label("counter"));
 
-			myTextField 		= new TextField();
-			frame.add("Center", myTextField);
+		myTextField 		= new TextField();
+		frame.add("Center", myTextField);
 
-			
-			Panel panel 		= new Panel();
-			button	 		= new Button("PressMe");
-			panel.add(button);
-			frame.add("South", panel);		
+		//panel in constructor and not an attribute as doesn't need to be visible to whole class
+		Panel panel 		= new Panel();
+		button	 		= new Button("PressMe");
+		panel.add(button);
+		frame.add("South", panel);		
 
-			frame.addWindowListener(new CloseListener());	
-			frame.setSize(400,400);
-			frame.setLocation(300,300);
-			frame.setVisible(true);
+		frame.addWindowListener(new CloseListener());	
+		frame.setSize(200,100);
+		frame.setLocation(100,100);
+		frame.setVisible(true);
 
-		} 
-		 
-		public void paint( int x, int y, int x1, int y2) {
-		    
-		    Graphics2D g2 = (Graphics2D)g;
-		    Line2D line = new Line2D.Double(30,30,80,80);
-		    g2.setStroke(new BasicStroke(4));
-		    g2.draw(line);
-		  }
-		     
-		 
+	} //View()
 
-	    	public void update(Observable obs, Object obj) {
+	// Called from the Model
+    	public void update(Observable obs, Object obj) {
 
-			myTextField.setText("" + ((Integer)obj).intValue());	//obj is an Object, need to cast to an Integer
+		//who called us and what did they send?
+		//System.out.println ("View      : Observable is " + obs.getClass() + ", object passed is " + obj.getClass());
 
-	    	} 
-		public void setValue(int v){
-	    		myTextField.setText("" + v);
-		} 
-	    	
-		public void addController(controller controller){
-			System.out.println("View      : adding controller");
-			button.addActionListener(controller);	//need controller before adding it as a listener 
-		} 
-		
-		public static class CloseListener extends WindowAdapter {
-			public void windowClosing(WindowEvent e) {
-				e.getWindow().setVisible(false);
-				System.exit(0);
-			}
-			} 
-		} 
+		//model Pull 
+		//ignore obj and ask model for value, 
+		//to do this, the view has to know about the model (which I decided I didn't want to do)
+		//uncomment next line to do Model Pull
+    		//myTextField.setText("" + model.getValue());
 
-	}
+		//model Push 
+		//parse obj
+		myTextField.setText("" + ((Integer)obj).intValue());	//obj is an Object, need to cast to an Integer
+
+    	} //update()
+
+	//to initialise TextField
+	public void setValue(int v){
+    		myTextField.setText("" + v);
+	} //setValue()
+    	
+	public void addController(controller controller){
+		System.out.println("View      : adding controller");
+		button.addActionListener(controller);	//need controller before adding it as a listener 
+	} //addController()
+
+	//uncomment to allow controller to use view to initialise model	
+	//public void addModel(Model m){
+	//	System.out.println("View      : adding model");
+	//	this.model = m;
+	//} //addModel()
+	
+	public static class CloseListener extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			e.getWindow().setVisible(false);
+			System.exit(0);
+		} //windowClosing()
+	} //CloseListener
+
+} //View
