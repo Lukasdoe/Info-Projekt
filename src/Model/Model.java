@@ -3,19 +3,17 @@ package Model;
 
 public class Model extends java.util.Observable {	
 
-	Maze maze;
+	private Maze maze;
 	public Model(){
 		
 	} 
 	
 	public void createMaze() {
-		maze = Maze_Generator.createMaze();
+		maze = Maze_Generator.createMaze(5, 5, 5);
+		System.out.println(maze.toString());
 	}
 	
 	public Maze getMaze() {
 		return maze;
 	}
-	
-	//Cell.WALL.TOP;
-	
 }

@@ -9,7 +9,7 @@ public class Cell implements DATENELEMENT{
 	
 	boolean[] walls; //fängt im Uhrzeigersinn oben (TOP) zu zählen an und gibt an, ob sich hier ein Wand befindet (true)
 	
-	public enum WALL {
+	public static enum WALL {
 	    TOP,
 	    RIGHT,
 	    LEFT,
@@ -54,6 +54,23 @@ public class Cell implements DATENELEMENT{
 			return walls[3];
 		default:
 			return true;
+		}
+	}
+	
+	public void removeWall(WALL wall) {
+		switch(wall) {
+		case TOP:
+			walls[0] = false;
+			break;
+		case RIGHT:
+			walls[1] = false;
+			break;
+		case BOTTOM:
+			walls[2] = false;
+			break;
+		case LEFT:
+			walls[3] = false;
+			break;
 		}
 	}
 
