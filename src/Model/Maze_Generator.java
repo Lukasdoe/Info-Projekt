@@ -1,3 +1,4 @@
+package Model;
 
 public class Maze_Generator {
 	Maze_Generator(){

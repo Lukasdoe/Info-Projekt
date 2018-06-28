@@ -1,3 +1,4 @@
+package Model;
 import Liste.LISTE;
 
 public class Maze {
