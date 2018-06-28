@@ -5,16 +5,17 @@ import Liste.LISTE;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Maze_Generator {
+class Maze_Generator {
 	
-	static LISTE stack;
+	private static LISTE stack;
 	
-	Maze_Generator(){
-		stack = new LISTE();
-	}
+	protected Maze_Generator(){}
 	
-	static Maze createMaze(int cols, int rows, int cSize) {
+	protected static Maze createMaze(int cols, int rows, int cSize) {
 		Maze maze = new Maze(cols, rows, cSize);
+		stack = new LISTE();
+
+		int i = 0;
 		for(int x = 0; x < cols; x++){
 	      for(int y = 0; y < rows; y++){
 	        maze.setCell(x, y, new Cell(x, y, cSize));
@@ -24,27 +25,26 @@ public class Maze_Generator {
 		boolean[][] visited = new boolean[cols][rows];
 		
 		Cell next;
-		Cell current;
-		
-	    current = maze.getCell(0, 0);
+		Cell current = maze.getCell(0, 0);
 	    
 	    
 	    visited[0][0] = true;
 
-	    stack.HintenEinfuegen(current);
+	    stack.HintenEinfuegen(current.setNum(i++));
 	    
 	    while(stack.LaengeGeben() > 0){
 	        next = pickNext(maze, current, cols, rows, visited);
 	        if(next != null){
 	          visited[next.getX()][next.getY()] = true;
-	          stack.HintenEinfuegen(current);
+	          stack.HintenEinfuegen(current.setNum(i++));
 	          removeWalls(current, next);
 	          current = next;
 	        }
 	        else if (stack.LaengeGeben() > 0) {
 	          current = (Cell) stack.EndeEntfernen();
+	          i--;
 	        }
-	      }
+	     }
 	    
 		return maze;
 	}
@@ -57,7 +57,7 @@ public class Maze_Generator {
 	    if(getIndex(now.getX() + 1, now.getY(), cols, rows, visited)) neighbors.add(maze.getCell(now.getX() + 1, now.getY())); 
 	    if(getIndex(now.getX(), now.getY() + 1, cols, rows, visited)) neighbors.add(maze.getCell(now.getX(), now.getY() + 1));
 	    if(getIndex(now.getX() - 1, now.getY(), cols, rows, visited)) neighbors.add(maze.getCell(now.getX() - 1, now.getY()));
-	    if(neighbors.size() > 0) return neighbors.get((int) Math.floor(rand.nextInt((neighbors.size() - 0) + 1)));
+	    if(neighbors.size() > 0) return neighbors.get((int) Math.floor(rand.nextInt(neighbors.size())));
 	    else return null;
 	}
 	
