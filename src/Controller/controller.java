@@ -1,5 +1,8 @@
 package Controller;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import Model.Model;
 
 import View.View;
@@ -9,17 +12,13 @@ public class controller implements java.awt.event.ActionListener {
 	Model model;
 	View view;
 
-
 	public controller() {	
 		System.out.println ("Controller()");
 	} 
 	public void actionPerformed(java.awt.event.ActionEvent e){
 		model.createMaze();
 		System.out.println("Model");
-		
-
 		System.out.println("Controller: acting on Model");
-		//model.incrementValue();
 	} 
 	public void addModel(Model m){
 		System.out.println("Controller: adding model");
@@ -32,6 +31,12 @@ public class controller implements java.awt.event.ActionListener {
 	} 
 
 	public void initModel(int x){
-		//model.setValue(x);
+	} 
+	
+	public static class CloseListener extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			e.getWindow().setVisible(false);
+			System.exit(0);
+		} 
 	} 
 } 

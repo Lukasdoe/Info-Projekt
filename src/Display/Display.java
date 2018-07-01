@@ -8,12 +8,12 @@ public class Display {
  static Model m;
 
  	public static void main(String[] args) {
-	m = new Model();
-	v = new View();
-	c = new controller();
-	m.addObserver(v);
-	v.addController(c);	
-	c.addModel(m);
-	c.addView(v);
+		m = new Model();
+		v = new View();
+		c = new controller();
+		m.addObserver(v);
+		v.addController(c);	
+		c.addModel(m);
+		c.addView(v);
 	}
 }
