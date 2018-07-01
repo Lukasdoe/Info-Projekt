@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.Component;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,10 +17,15 @@ public class controller implements java.awt.event.ActionListener {
 		System.out.println ("Controller()");
 	} 
 	public void actionPerformed(java.awt.event.ActionEvent e){
-		model.createMaze();
-		System.out.println("Model");
-		System.out.println("Controller: acting on Model");
+		switch(((Component) e.getSource()).getName()) {
+		case "button1":
+			model.createMaze();
+			System.out.println("Model");
+			System.out.println("Controller: acting on Model");
+			break;
+		}
 	} 
+	
 	public void addModel(Model m){
 		System.out.println("Controller: adding model");
 		this.model = m;
