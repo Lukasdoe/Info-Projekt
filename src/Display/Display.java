@@ -6,7 +6,8 @@ public class Display {
  static View v;
  static controller c;
  static Model m;
-	public static void main(String[] args) {
+
+ 	public static void main(String[] args) {
 	m = new Model();
 	v = new View();
 	c = new controller();
@@ -14,6 +15,5 @@ public class Display {
 	v.addController(c);	
 	c.addModel(m);
 	c.addView(v);
-	;
 	}
 }

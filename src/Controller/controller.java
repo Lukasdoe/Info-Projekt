@@ -6,8 +6,6 @@ import View.View;
 
 public class controller implements java.awt.event.ActionListener {
 
-
-	
 	Model model;
 	View view;
 
@@ -22,7 +20,6 @@ public class controller implements java.awt.event.ActionListener {
 
 		System.out.println("Controller: acting on Model");
 		//model.incrementValue();
-
 	} 
 	public void addModel(Model m){
 		System.out.println("Controller: adding model");
@@ -34,10 +31,7 @@ public class controller implements java.awt.event.ActionListener {
 		this.view = v;
 	} 
 
-
 	public void initModel(int x){
 		//model.setValue(x);
 	} 
-
-
 } 
