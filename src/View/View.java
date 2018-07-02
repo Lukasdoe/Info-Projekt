@@ -21,16 +21,19 @@ public class View implements java.util.Observer {
 	private JFrame frame;
 	
 	public View() {
+		createDrawing(800, 800);
+	} 
+	
+	public void createDrawing(int width, int height) {
 		frame = new JFrame("MazeRunner");
 		m = new Model();
 		frame.addWindowListener(new Controller.controller.CloseListener());	
-		frame.setSize(600,600);
+		frame.setSize(width, height);
 		frame.setLocation(100,100);
 		frame.setVisible(true);
 		canvas = new CanvasX();
-		
 		frame.add(canvas);
-	} 
+	}
 	
 	public void MazeDraw(Model m){
 		Maze maze = m.getMaze();

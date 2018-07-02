@@ -34,8 +34,8 @@ public class controller implements java.awt.event.ActionListener {
 		this.view = v;
 	} 
 	
-	public void MakeMaze(int cSize) {
-		model.createMaze((view.getWindowWidth() - cSize) / cSize, (view.getWindowsHeight() - cSize) / cSize, cSize);
+	public void MakeMaze(int cols) {
+		model.createMaze(cols, (view.getWindowsHeight() - 50) / ((view.getWindowWidth() - 50) / cols), ((view.getWindowWidth() - 50) / cols));
 	}
 	public void MazeDrawApply(){
 		view.MazeDraw(model);

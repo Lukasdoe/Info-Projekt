@@ -11,7 +11,7 @@ public class Display {
 		m = new Model();
 		v = new View();
 		c = new controller();
-		v.addController(c);	
+		v.addController(c);
 		c.addModel(m);
 		c.addView(v);
 		c.MakeMaze(100);

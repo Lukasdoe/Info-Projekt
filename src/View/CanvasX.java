@@ -17,6 +17,9 @@ public class CanvasX extends JComponent{
             
 	void AddLine(int i, int j, int k, int l){
 		shapes.add(new Line2D.Double(new Point(i,j),new Point(k,l)));
+	}
+	
+	void reDraw() {
 		repaint();
 	}
 
