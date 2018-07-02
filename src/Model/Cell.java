@@ -9,7 +9,7 @@ public class Cell implements DATENELEMENT{
 	
 	private boolean[] walls; //fängt im Uhrzeigersinn oben (TOP) zu zählen an und gibt an, ob sich hier ein Wand befindet (true)
 	
-	public static enum WALL {
+	public static enum WALL { //Wände
 	    TOP,
 	    RIGHT,
 	    LEFT,
@@ -22,7 +22,7 @@ public class Cell implements DATENELEMENT{
 		size = s;
 		number_in_stack = 0;
 		walls = new boolean[4];
-		for(int i = 0; i < walls.length; i++) walls[i] = true;
+		for(int i = 0; i < walls.length; i++) walls[i] = true; //Anfangs hat eine Zelle alle Wände
 	}
 	
 	protected Cell(int _i, int _j, int s, int num) {
@@ -32,7 +32,7 @@ public class Cell implements DATENELEMENT{
 		number_in_stack = num;
 	}
 	
-	protected Cell setNum(int num) {
+	protected Cell setNum(int num) { //Index in stack
 		number_in_stack = num;
 		return this;
 	}
@@ -81,6 +81,7 @@ public class Cell implements DATENELEMENT{
 		}
 	}
 
+	//Methoden für die Liste als stack
 	public void InformationAusgeben() {
 		System.out.println("Zelle: " + number_in_stack + " Spalte: " + i + " Zeile: " + j + " Größe: " + size);
 	}
