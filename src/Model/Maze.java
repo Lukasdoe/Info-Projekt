@@ -10,18 +10,18 @@ public class Maze {
 		numCols = cols;
 		numRows = rows;
 		cellSize = cSize;
-		grid = new Cell[cols][rows];
+		grid = new Cell[cols][rows]; //leeres Maze generieren
 	}
 	
-	protected void setCell(int x, int y, Cell value) {
+	protected void setCell(int x, int y, Cell value) { //Zelle editieren
 		grid[x][y] = value;
 	}
 	
-	public Cell getCell(int x, int y) {
+	public Cell getCell(int x, int y) { //Zelle ausgeben
 		return grid[x][y];
 	}
 	
-	public String toString() {
+	public String toString() { //Maze ausgeben für debugging
 		String ret = "";
 		for(int i = 0; i < numCols; i++) {
 			for(int j = 0; j < numRows; j++) {
@@ -31,7 +31,7 @@ public class Maze {
 		return ret;
 	}
 	
-	public int getSize() {
+	public int getSize() { //gette Methoden für das Zeichnen
 		return cellSize;
 	}
 	

@@ -5,7 +5,7 @@ public class Model extends java.util.Observable {
 
 	private Maze maze;
 	public Model(){
-		
+		maze = new Maze(0, 0, 0); //leeres Platzhalter Maze für getMaze(), damit im Notfall keine NullPointer entstehen
 	} 
 	
 	public void createMaze() {
