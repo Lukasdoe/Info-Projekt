@@ -23,7 +23,7 @@ public class KNOTEN extends LISTENELEMENT
     }
     
     KNOTEN HintenEinfuegen(DATENELEMENT dNeu)  {
-        nachfolger.HintenEinfuegen(dNeu);
+        nachfolger = nachfolger.HintenEinfuegen(dNeu);
         return this;
     }
     

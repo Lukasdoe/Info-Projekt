@@ -11,10 +11,11 @@ public class Display {
 		m = new Model();
 		v = new View();
 		c = new controller();
-		m.addObserver(v);
-		c.MazeDrawApply(m);
 		v.addController(c);	
 		c.addModel(m);
 		c.addView(v);
+		c.MakeMaze(100);
+		m.addObserver(v);
+		c.MazeDrawApply();
 	}
 }

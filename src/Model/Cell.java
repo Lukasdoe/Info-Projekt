@@ -32,11 +32,6 @@ public class Cell implements DATENELEMENT{
 		number_in_stack = num;
 	}
 	
-	protected Cell setNum(int num) { //Index in stack
-		number_in_stack = num;
-		return this;
-	}
-	
 	public int getX() {
 		return i;
 	}

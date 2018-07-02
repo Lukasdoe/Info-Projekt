@@ -13,21 +13,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
 import View.CanvasX;
-import javafx.scene.control.Cell;
 public class View implements java.util.Observer {
 
-	private JTextField myTextField;
-	private JButton button; 
-	private static CanvasX canvas;
+	private CanvasX canvas;
 	private Model m;
+	private controller c;
+	private JFrame frame;
 	
 	public View() {
-		
-		System.out.println("View()");	
-		
-		JFrame frame 		= new JFrame("MazeRunner");
-		Model m = new Model();
-		m.createMaze();
+		frame = new JFrame("MazeRunner");
+		m = new Model();
 		frame.addWindowListener(new Controller.controller.CloseListener());	
 		frame.setSize(600,600);
 		frame.setLocation(100,100);
@@ -35,48 +30,51 @@ public class View implements java.util.Observer {
 		canvas = new CanvasX();
 		
 		frame.add(canvas);
-		
-				
-		
-	        
-		
-	       
-	
-		frame.pack(); 
 	} 
-	public static void MazeDraw(Model m){
+	
+	public void MazeDraw(Model m){
 		Maze maze = m.getMaze();
+		int x = 0;
+		int y = 0;
+		int size = 1;
 		for(int i = 0; i<m.getMaze().getCols(); i++) {
 			for(int j = 0; j<m.getMaze().getRows(); j++) {
 				Cell c = maze.getCell(i, j);
-			if(c.getWall(Cell.WALL.TOP)) {
-				canvas.AddLine(i,j , i+s, j);
-			}
-			System.out.println(i + "+" + j);	
-			
+				size = c.getSize();
+				x = c.getX() * size;
+				y = c.getY() * size;
 				
+				if(c.getWall(Cell.WALL.TOP)) {
+					canvas.AddLine(x, y, x + size, y);
+				}
+				if(c.getWall(Cell.WALL.RIGHT)) {
+					canvas.AddLine(x + size, y, x + size, y + size);
+				}
+				if(c.getWall(Cell.WALL.BOTTOM)) {
+					canvas.AddLine(x, y + size, x + size, y + size);
+				}
+				if(c.getWall(Cell.WALL.LEFT)) {
+					canvas.AddLine(x, y, x, y + size);
+				}
 			}
 		}
-		
-	
-	} 
-
-	public void update(Observable obs, Object obj) {
-		myTextField.setText("" + ((Integer)obj).intValue());	
-	} 
-
-	public void setValue(int v){
-    	myTextField.setText("" + v);
 	} 
 	
-	public void paint(Graphics g) { 
-		g.fillOval(100, 100, 200, 200); 
-	}
-
-    	
 	public void addController(controller controller){
 		System.out.println("View      : adding controller");
-		//button.addActionListener(controller);
+		c = controller;
+	}
+	
+	public int getWindowWidth() {
+		return frame.getWidth();
+	}
+	
+	public int getWindowsHeight() {
+		return frame.getHeight();
+	}
+ 
+	public void update(Observable arg0, Object arg1) {
+		
 	}
 }
  

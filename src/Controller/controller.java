@@ -1,14 +1,13 @@
 package Controller;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import Model.Maze;
 import Model.Model;
-
 import View.View;
+import java.awt.Component;
 
 public class controller implements java.awt.event.ActionListener {
 
@@ -17,18 +16,13 @@ public class controller implements java.awt.event.ActionListener {
 
 	public controller() {	
 		System.out.println ("Controller()");
-		model = new Model();
-		model.createMaze();
 	} 
-	/*public void actionPerformed(java.awt.event.ActionEvent e){
+		
+	public void actionPerformed(java.awt.event.ActionEvent e){
 		switch(((Component) e.getSource()).getName()) {
-		case "button1":
-			model.createMaze();
-			System.out.println("Model");
-			System.out.println("Controller: acting on Model");
-			break;
+
 		}
-	} */
+	} 
 	
 	public void addModel(Model m){
 		System.out.println("Controller: adding model");
@@ -39,22 +33,16 @@ public class controller implements java.awt.event.ActionListener {
 		System.out.println("Controller: adding view");
 		this.view = v;
 	} 
-	public void MazeDrawApply(Model m){
-          m.getMaze();
-		View.MazeDraw(m);
-		
-		
+	
+	public void MakeMaze(int cSize) {
+		model.createMaze((view.getWindowWidth() - cSize) / cSize, (view.getWindowsHeight() - cSize) / cSize, cSize);
+	}
+	public void MazeDrawApply(){
+		view.MazeDraw(model);
 	}
 	public static class CloseListener extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
-			e.getWindow().setVisible(false);
 			System.exit(0);
 		} 
-		
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	} 
 } 

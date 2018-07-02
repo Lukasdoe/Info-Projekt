@@ -8,8 +8,9 @@ public class Model extends java.util.Observable {
 		maze = new Maze(0, 0, 0); //leeres Platzhalter Maze für getMaze(), damit im Notfall keine NullPointer entstehen
 	} 
 	
-	public void createMaze() {
-		maze = Maze_Generator.createMaze(5, 5, 5);
+	public void createMaze(int cols, int rows, int cSize) {
+		Maze_Generator mG = new Maze_Generator();
+		maze = mG.createMaze(cols, rows, cSize);
 	}
 	
 	public Maze getMaze() {

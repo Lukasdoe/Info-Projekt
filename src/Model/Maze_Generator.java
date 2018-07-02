@@ -6,16 +6,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class Maze_Generator {
-	
-	private static LISTE stack;
-	
+		
 	protected Maze_Generator(){}
 	
-	protected static Maze createMaze(int cols, int rows, int cSize) {
+	protected Maze createMaze(int cols, int rows, int cSize) {
+		LISTE stack;
+
 		Maze maze = new Maze(cols, rows, cSize); //neues, leeres Maze
 		stack = new LISTE(); //stapel für Zellen, die bereits bearbeitet wurden, aber vl. noch Abzweigungen haben
 
-		int i = 0; //variable für die nummer der Zellen im Stack, quasi der Index
 		for(int x = 0; x < cols; x++){
 	      for(int y = 0; y < rows; y++){
 	        maze.setCell(x, y, new Cell(x, y, cSize)); //leeres Maze mit Zellen auffüllen
@@ -27,25 +26,22 @@ class Maze_Generator {
 		Cell next;	//kandidat für nächste Zelle
 		Cell current = maze.getCell(0, 0); //erste Zelle zur bearbeitung ist immer link oben (0,0)
 	    
-	    
 	    visited[0][0] = true; //erste Zelle ist besucht
 
-	    stack.HintenEinfuegen(current.setNum(i++)); //Zelle dem stack hinzufügen und den Index danach um 1 erhöhen
+	    stack.HintenEinfuegen(current); //Zelle dem stack hinzufügen und den Index danach um 1 erhöhen
 	    
 	    while(stack.LaengeGeben() > 0){ //solange man nicht wieder am Anfang ist
 	        next = pickNext(maze, current, cols, rows, visited); //neuer, nächster Kandidat mit pickNext Methode
 	        if(next != null){	//wenn es für die jetzige current Zelle einen validen, nicht besuchten Kandidaten gibt
 	          visited[next.getX()][next.getY()] = true; //diesen Besuchen
-	          stack.HintenEinfuegen(current.setNum(i++)); //ihn dem stack hinzufügen
+	          stack.HintenEinfuegen(current); //ihn dem stack hinzufügen
 	          removeWalls(current, next); //die Wänge zwischen current und next entfernen => valider Weg
 	          current = next; //nächsten schritt vorbereiten
 	        }
 	        else if (stack.LaengeGeben() > 0) { //wenn es keinen validen nachbarn für current gibt, und current nicht bei 0,0 ist
 	          current = (Cell) stack.EndeEntfernen(); //letzten Punkt nehmen, der evtl. funktionieren könnte und nochmal probieren
-	          i--; //index runterschrauben
 	        }
-	     }
-	    
+	    }
 		return maze;
 	}
 	
