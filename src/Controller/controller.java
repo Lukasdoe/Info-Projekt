@@ -43,6 +43,7 @@ public class controller implements java.awt.event.ActionListener {
           m.getMaze();
 		View.MazeDraw(m);
 		
+		
 	}
 	public static class CloseListener extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
