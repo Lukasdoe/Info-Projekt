@@ -9,6 +9,7 @@ import java.lang.Integer;
 import java.util.Observable;
 import javax.swing.*;
 import View.CanvasX;
+
 public class View implements java.util.Observer {
 
 	private CanvasX canvas;
