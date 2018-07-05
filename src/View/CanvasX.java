@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public class CanvasX extends JComponent{
+
+	private static final long serialVersionUID = 1L;
 	int i;
 	int j;
 	public CanvasX(){}

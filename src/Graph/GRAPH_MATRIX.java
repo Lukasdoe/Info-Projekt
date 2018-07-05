@@ -15,7 +15,7 @@ public class GRAPH_MATRIX
 
     }
 
-    void KnotenEinfuegen(String bezeichner)  {
+    public void KnotenEinfuegen(String bezeichner)  {
         if ((anzahlKnoten < knoten.length) && 
         (KnotenNummerGeben(bezeichner) == -1))  {
             knoten[anzahlKnoten] = new KNOTEN(bezeichner);
@@ -29,7 +29,7 @@ public class GRAPH_MATRIX
         }
     }
 
-    void KanteEinfuegen(String von, String nach, int gewicht)  {
+    public void KanteEinfuegen(String von, String nach, int gewicht)  {
         int vonNummer = KnotenNummerGeben(von);
         int nachNummer = KnotenNummerGeben(nach);
 
@@ -40,7 +40,7 @@ public class GRAPH_MATRIX
         }
     }
 
-    int KnotenNummerGeben(String bezeichner)  {
+    public int KnotenNummerGeben(String bezeichner)  {
         int erg = -1;
         for (int i = 0; (i<anzahlKnoten) && (erg == -1); i++)  {
             if (knoten[i].BezeichnungGeben().equals(bezeichner)) {
@@ -50,7 +50,7 @@ public class GRAPH_MATRIX
         return erg;
     }
 
-    String KnotenBezeichnerGeben(int knotenNummer)  {
+    public String KnotenBezeichnerGeben(int knotenNummer)  {
         if ((knotenNummer >= 0) && (knotenNummer < knoten.length)) {
             return knoten[knotenNummer].BezeichnungGeben();
         } 
@@ -58,7 +58,7 @@ public class GRAPH_MATRIX
             return "";
     }
     
-    void Ausgeben() {
+    public void Ausgeben() {
         int breite = 5;
         System.out.print(("      ").substring(0, breite-1));
         for (int k = 0; k<anzahlKnoten; k++) {

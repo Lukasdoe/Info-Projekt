@@ -8,6 +8,7 @@ public class Display {
  static Model m;
 
  	public static void main(String[] args) {
+ 		//standart Verteilung der enzelnen Komponenten
 		m = new Model();
 		v = new View();
 		c = new controller();
@@ -15,6 +16,7 @@ public class Display {
 		c.addModel(m);
 		c.addView(v);
 		m.addObserver(v);
+		//startdialog -> ab hier alles über Actions zwischen View und Controller und Model
 		v.createChooser();
 	}
 }

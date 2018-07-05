@@ -1,15 +1,10 @@
 package Controller;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import javax.swing.JTextField;
-
-import Model.Maze;
+import Graph.GRAPH_MATRIX;
 import Model.Model;
 import View.View;
-import java.awt.Component;
 
 public class controller implements java.awt.event.ActionListener {
 
@@ -49,6 +44,7 @@ public class controller implements java.awt.event.ActionListener {
 	} 
 	
 	public void MakeMaze(int cols) {
+		model.setGraph(new GRAPH_MATRIX(cols * cols)); //GRAPH_MATRIX mit Maximum an Knoten entsprechend der Zellanzahl
 		model.createMaze(cols, Math.round((view.getWindowsHeight() - 50) / ((view.getWindowWidth() - 50) / cols)), Math.round((view.getWindowWidth() - 50) / cols));
 	}
 	

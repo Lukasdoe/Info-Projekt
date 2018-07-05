@@ -6,12 +6,8 @@ import Controller.controller;
 import Model.Model;
 
 import java.lang.Integer;
-import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.Line2D;
 import View.CanvasX;
 public class View implements java.util.Observer {
 
