@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JTextField;
+
 import Model.Maze;
 import Model.Model;
 import View.View;
@@ -13,14 +15,34 @@ public class controller implements java.awt.event.ActionListener {
 
 	Model model;
 	View view;
+	int cols;
+	int width;
+	int height;
 
 	public controller() {	
 		System.out.println ("Controller()");
+		cols = 10; //standart Wert, falls nichts eingegeben wird
+		width = 800;
+		height = 800;
 	} 
 		
 	public void actionPerformed(java.awt.event.ActionEvent e){
-		switch(((Component) e.getSource()).getName()) {
-
+		switch(e.getActionCommand()) {
+		case "go":
+			MakeMaze(cols);
+			view.setWindowsHeight(height);
+			view.setWindowWidth(width);
+			view.createDrawing();
+			break;
+		case "width_input":
+			width = Integer.parseInt(((JTextField) e.getSource()).getText());	
+			break;
+		case "height_input":
+			height = Integer.parseInt(((JTextField) e.getSource()).getText());	
+			break;
+		case "cols_input":
+			cols = Integer.parseInt(((JTextField) e.getSource()).getText());	
+			break;
 		}
 	} 
 	
@@ -38,11 +60,13 @@ public class controller implements java.awt.event.ActionListener {
 		model.createMaze(cols, Math.round((view.getWindowsHeight() - 50) / ((view.getWindowWidth() - 50) / cols)), Math.round((view.getWindowWidth() - 50) / cols));
 	}
 	
-	public void MazeDrawApply(){
-		view.MazeDraw(model);
+	public static class CloseListener extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			System.exit(0);
+		} 
 	}
 	
-	public static class CloseListener extends WindowAdapter {
+	public static class CloseListenerSetup extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);
 		} 

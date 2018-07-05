@@ -19,12 +19,40 @@ public class View implements java.util.Observer {
 	private Model m;
 	private controller c;
 	private JFrame frame;
+	private int width;
+	private int height;
 	
 	public View() {
-		createDrawing(800, 800);
-	} 
+		
+	}
 	
-	public void createDrawing(int width, int height) {
+	public void createChooser() {
+		JButton goButton = new JButton("Labyrinth erstellen und anzeigen");
+	    goButton.setActionCommand("go");
+	    goButton.addActionListener(c);
+	    goButton.setSize(50, 50);
+	    goButton.setLocation(0, 350);
+	    
+        JFrame f= new JFrame();
+        
+        JTextField cols = new JTextField("10", 1);  
+        cols.setBounds(50,50,150,20);  
+        
+        JTextField input_width = new JTextField("800", 1);  
+        input_width.setBounds(50,100,150,20);
+        
+        JTextField input_height = new JTextField("800", 1);  
+        input_height.setBounds(50,150,150,20); 
+         
+        f.add(cols);
+        f.add(input_width);
+        f.add(input_height); 
+        f.setSize(300,300);  
+        f.setLayout(null);  
+        f.setVisible(true);  
+	}
+	
+	public void createDrawing() {
 		frame = new JFrame("MazeRunner");
 		m = new Model();
 		frame.addWindowListener(new Controller.controller.CloseListener());	
@@ -74,6 +102,14 @@ public class View implements java.util.Observer {
 	
 	public int getWindowsHeight() {
 		return frame.getHeight();
+	}
+	
+	public void setWindowWidth(int _width) {
+		width = _width;
+	}
+	
+	public void setWindowsHeight(int _height) {
+		height = _height;
 	}
  
 	public void update(Observable arg0, Object arg1) {
