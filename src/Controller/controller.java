@@ -35,11 +35,13 @@ public class controller implements java.awt.event.ActionListener {
 	} 
 	
 	public void MakeMaze(int cols) {
-		model.createMaze(cols, (view.getWindowsHeight() - 50) / ((view.getWindowWidth() - 50) / cols), ((view.getWindowWidth() - 50) / cols));
+		model.createMaze(cols, Math.round((view.getWindowsHeight() - 50) / ((view.getWindowWidth() - 50) / cols)), Math.round((view.getWindowWidth() - 50) / cols));
 	}
+	
 	public void MazeDrawApply(){
 		view.MazeDraw(model);
 	}
+	
 	public static class CloseListener extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);

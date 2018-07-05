@@ -14,7 +14,7 @@ public class Display {
 		v.addController(c);
 		c.addModel(m);
 		c.addView(v);
-		c.MakeMaze(100);
+		c.MakeMaze(29);
 		m.addObserver(v);
 		c.MazeDrawApply();
 	}
