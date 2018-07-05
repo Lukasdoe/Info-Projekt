@@ -22,6 +22,8 @@ public class View implements java.util.Observer {
 	private int width;
 	private int height;
 	
+	private JTextField cols, input_width, input_height;
+	
 	public View() {
 		
 	}
@@ -31,23 +33,30 @@ public class View implements java.util.Observer {
 	    goButton.setActionCommand("go");
 	    goButton.addActionListener(c);
 	    goButton.setSize(50, 50);
-	    goButton.setLocation(0, 350);
+	    goButton.setBounds(50, 300, 300, 20);
 	    
         JFrame f= new JFrame();
         
-        JTextField cols = new JTextField("10", 1);  
-        cols.setBounds(50,50,150,20);  
+        cols = new JTextField("10", 1);  
+        cols.setBounds(100,50,150,20);  
+        cols.addActionListener(c);
+        cols.setActionCommand("cols_input");
         
-        JTextField input_width = new JTextField("800", 1);  
-        input_width.setBounds(50,100,150,20);
+        input_width = new JTextField("800", 1);  
+        input_width.setBounds(100,100,150,20);
+        input_width.addActionListener(c);
+        input_width.setActionCommand("input_width");
         
-        JTextField input_height = new JTextField("800", 1);  
-        input_height.setBounds(50,150,150,20); 
+        input_height = new JTextField("800", 1);  
+        input_height.setBounds(100,150,150,20); 
+        input_height.addActionListener(c);
+        input_height.setActionCommand("input_height");
          
         f.add(cols);
         f.add(input_width);
         f.add(input_height); 
-        f.setSize(300,300);  
+        f.add(goButton);
+        f.setSize(400, 400);  
         f.setLayout(null);  
         f.setVisible(true);  
 	}
@@ -97,11 +106,38 @@ public class View implements java.util.Observer {
 	}
 	
 	public int getWindowWidth() {
-		return frame.getWidth();
+		return width;
 	}
 	
 	public int getWindowsHeight() {
-		return frame.getHeight();
+		return height;
+	}
+	
+	public int getWidthTF() {
+		try {
+			return Integer.parseInt(input_width.getText());
+		}
+		catch (Exception e) {
+			return 800;
+		}
+	}
+	
+	public int getHeightTF() {
+		try {
+			return Integer.parseInt(input_height.getText());
+		}
+		catch (Exception e) {
+			return 800;
+		}
+	}
+	
+	public int getColsTF() {
+		try {
+			return Integer.parseInt(cols.getText());
+		}
+		catch (Exception e) {
+			return 10;
+		}
 	}
 	
 	public void setWindowWidth(int _width) {

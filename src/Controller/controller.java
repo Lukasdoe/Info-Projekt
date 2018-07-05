@@ -29,19 +29,11 @@ public class controller implements java.awt.event.ActionListener {
 	public void actionPerformed(java.awt.event.ActionEvent e){
 		switch(e.getActionCommand()) {
 		case "go":
-			MakeMaze(cols);
-			view.setWindowsHeight(height);
-			view.setWindowWidth(width);
+			view.setWindowWidth(view.getWidthTF());
+			view.setWindowsHeight(view.getHeightTF());
+			MakeMaze(view.getColsTF());
 			view.createDrawing();
-			break;
-		case "width_input":
-			width = Integer.parseInt(((JTextField) e.getSource()).getText());	
-			break;
-		case "height_input":
-			height = Integer.parseInt(((JTextField) e.getSource()).getText());	
-			break;
-		case "cols_input":
-			cols = Integer.parseInt(((JTextField) e.getSource()).getText());	
+			view.MazeDraw(model);
 			break;
 		}
 	} 
