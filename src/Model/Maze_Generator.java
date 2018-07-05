@@ -10,12 +10,12 @@ class Maze_Generator {
 	
 	private int lastX;
 	private int lastY;
-	private int i;
+	private Cell lastCell;
 		
 	protected Maze_Generator(){
 		lastX = 0;
 		lastY = 0;
-		i = 0;
+		lastCell = new Cell(0, 0, 1);
 	}
 	
 	protected Maze createMaze(int cols, int rows, int cSize, GRAPH_MATRIX gm) {
@@ -79,9 +79,9 @@ class Maze_Generator {
 	   int y = cell1.getY() - cell2.getY();
 	   
 	   if(x != lastX && y != lastY) {
-		   gm.KnotenEinfuegen(i + "");
-		   gm.KanteEinfuegen(i + "", (i - 1) + "", 1);
-		   i++;
+		   gm.KnotenEinfuegen(cell1.getX() + ";" + cell1.getY());
+		   gm.KanteEinfuegen(cell1.getX() + ";" + cell1.getY(), lastCell.getX() + ";" + lastCell.getY(), 1);
+		   lastCell = cell1;
 	   }
 	   
 	   lastX = x;
