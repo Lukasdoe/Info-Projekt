@@ -1,28 +1,31 @@
+package Model;
 import Liste.DATENELEMENT;
 
 public class Cell implements DATENELEMENT{
-	int size; //Zellengrößen, bei allen gleich
-	int i; //Spalte im Labyrinth
-	int j; //Zeile
-	int number_in_stack; //nur gebraucht für Listensortierung des Stacks
+	private int size; //Zellengrößen, bei allen gleich
+	private int i; //Spalte im Labyrinth
+	private int j; //Zeile
+	private int number_in_stack; //nur gebraucht für Listensortierung des Stacks
 	
-	boolean[] walls; //fängt im Uhrzeigersinn oben (TOP) zu zählen an und gibt an, ob sich hier ein Wand befindet (true)
+	private boolean[] walls; //fängt im Uhrzeigersinn oben (TOP) zu zählen an und gibt an, ob sich hier ein Wand befindet (true)
 	
-	public enum WALL {
+	public static enum WALL { //Wände
 	    TOP,
 	    RIGHT,
 	    LEFT,
 	    BOTTOM
 	}
 	
-	public Cell(int _i, int _j, int s) {
+	protected Cell(int _i, int _j, int s) {
 		i = _i;
 		j = _j;
 		size = s;
 		number_in_stack = 0;
+		walls = new boolean[4];
+		for(int i = 0; i < walls.length; i++) walls[i] = true; //Anfangs hat eine Zelle alle Wände
 	}
 	
-	public Cell(int _i, int _j, int s, int num) {
+	protected Cell(int _i, int _j, int s, int num) {
 		i = _i;
 		j = _j;
 		size = s;
@@ -30,11 +33,11 @@ public class Cell implements DATENELEMENT{
 	}
 	
 	public int getX() {
-		return i * size;
+		return i;
 	}
 	
 	public int getY() {
-		return j * size;
+		return j;
 	}
 	
 	public int getSize() {
@@ -55,7 +58,25 @@ public class Cell implements DATENELEMENT{
 			return true;
 		}
 	}
+	
+	protected void removeWall(WALL wall) {
+		switch(wall) {
+		case TOP:
+			walls[0] = false;
+			break;
+		case RIGHT:
+			walls[1] = false;
+			break;
+		case BOTTOM:
+			walls[2] = false;
+			break;
+		case LEFT:
+			walls[3] = false;
+			break;
+		}
+	}
 
+	//Methoden für die Liste als stack
 	public void InformationAusgeben() {
 		System.out.println("Zelle: " + number_in_stack + " Spalte: " + i + " Zeile: " + j + " Größe: " + size);
 	}
