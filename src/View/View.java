@@ -40,20 +40,32 @@ public class View implements java.util.Observer {
         cols.setBounds(100,50,150,20);  
         cols.addActionListener(c);
         cols.setActionCommand("cols_input");
+        JLabel spalte = new JLabel();
+        spalte.setText("Geben Sie hier die Anzahl der Reihen an");
+        spalte.setBounds(100-70,50-25, 300, 20);
         
         input_width = new JTextField("800", 1);  
         input_width.setBounds(100,100,150,20);
         input_width.addActionListener(c);
         input_width.setActionCommand("input_width");
+        JLabel weite = new JLabel();
+        weite.setText("Geben Sie hier die Weite des Labyrinths an");
+        weite.setBounds(100-70,100-25, 300, 20);
         
         input_height = new JTextField("800", 1);  
         input_height.setBounds(100,150,150,20); 
         input_height.addActionListener(c);
         input_height.setActionCommand("input_height");
-         
+        JLabel hoehe = new JLabel();
+        hoehe.setText("Geben Sie hier die Hoehe des Labyrinths an");
+        hoehe.setBounds(100-70,150-25, 300, 20);
+        
         f.add(cols);
         f.add(input_width);
         f.add(input_height); 
+        f.add(weite);
+        f.add(hoehe);
+        f.add(spalte);
         f.add(goButton);
         f.setSize(400, 400);  
         f.setLayout(null);  

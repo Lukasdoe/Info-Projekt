@@ -17,10 +17,15 @@ public class Keys implements java.awt.event.KeyListener{
 	public void keyReleased(KeyEvent arg0) { }
 
 	public void keyTyped(KeyEvent arg0) {
-		System.out.println("344");
 		switch(arg0.getKeyCode()) {
-		
+		case 37:
+			break;
+		case 38:
+			break;
+		case 39:
+			break;
+		case 40:
+			break;
 		}
 	}
-	
 }
