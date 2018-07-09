@@ -1,12 +1,13 @@
 package Controller;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import Graph.GRAPH_MATRIX;
 import Model.Model;
 import View.View;
 
-public class controller implements java.awt.event.ActionListener {
+public class controller implements java.awt.event.ActionListener{
 
 	Model model;
 	View view;

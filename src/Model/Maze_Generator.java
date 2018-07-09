@@ -7,16 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class Maze_Generator {
-	
-	private int lastX;
-	private int lastY;
-	private Cell lastCell;
 		
-	protected Maze_Generator(){
-		lastX = 0;
-		lastY = 0;
-		lastCell = new Cell(0, 0, 1);
-	}
+	protected Maze_Generator(){}
 	
 	protected Maze createMaze(int cols, int rows, int cSize, GRAPH_MATRIX gm) {
 		LISTE stack;
@@ -78,14 +70,7 @@ class Maze_Generator {
 	   int x = cell1.getX() - cell2.getX(); //welche Wände entfernt werden können => zeigt die Position der Zellen zueinander, also z.B. Zelle 1 ist bei X= 5 und Zelle2 bei X = 4 , also ist x = -1 und man muss die link wand bei 1 und rechte wand bei 2 entfernen
 	   int y = cell1.getY() - cell2.getY();
 	   
-	   if(x != lastX && y != lastY) {
-		   gm.KnotenEinfuegen(cell1.getX() + ";" + cell1.getY());
-		   gm.KanteEinfuegen(cell1.getX() + ";" + cell1.getY(), lastCell.getX() + ";" + lastCell.getY(), 1);
-		   lastCell = cell1;
-	   }
-	   
-	   lastX = x;
-	   lastY = y;
+	   gm.KanteEinfuegen(cell1.getX() + ";" + cell1.getY(), cell2.getX() + ";" + cell2.getY(), 1);
 	   
 	   if(x == 1){
 	     cell1.removeWall(Cell.WALL.LEFT);

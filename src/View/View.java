@@ -2,9 +2,11 @@ package View;
 
 import Model.Maze;
 import Model.Cell;
+import Controller.Keys;
 import Controller.controller;
 import Model.Model;
 
+import java.awt.event.KeyListener;
 import java.lang.Integer;
 import java.util.Observable;
 import javax.swing.*;
@@ -60,6 +62,7 @@ public class View implements java.util.Observer {
 	
 	public void createDrawing() {
 		frame = new JFrame("MazeRunner");
+		frame.addKeyListener(new Keys());
 		m = new Model();
 		frame.addWindowListener(new Controller.controller.CloseListener());	
 		frame.setSize(width, height);

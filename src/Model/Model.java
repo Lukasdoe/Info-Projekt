@@ -11,11 +11,16 @@ public class Model extends java.util.Observable {
 	
 	public Model(){
 		maze = new Maze(0, 0, 0); //leeres Platzhalter Maze für getMaze(), damit im Notfall keine NullPointer entstehen
-		gm = new GRAPH_MATRIX(0);
 	} 
 	
 	public void createMaze(int cols, int rows, int cSize) {
 		Maze_Generator mG = new Maze_Generator();
+		gm = new GRAPH_MATRIX(cols * rows);
+		for(int i = 0; i < cols; i++) {
+			for(int j = 0; j < rows; j++) {
+				gm.KnotenEinfuegen(i+";"+j);
+			}
+		}
 		maze = mG.createMaze(cols, rows, cSize, gm);
 	}
 	
