@@ -18,7 +18,7 @@ public class Model extends java.util.Observable {
 		gm = new GRAPH_MATRIX(cols * rows);
 		for(int i = 0; i < cols; i++) {
 			for(int j = 0; j < rows; j++) {
-				gm.KnotenEinfuegen(i+";"+j);
+				gm.KnotenEinfuegen(i+";"+j); //Matrix mit Knoten für jede Zelle füllen
 			}
 		}
 		maze = mG.createMaze(cols, rows, cSize, gm);
