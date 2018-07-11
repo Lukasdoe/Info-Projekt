@@ -5,13 +5,14 @@ import Model.Cell;
 import Controller.Keys;
 import Controller.controller;
 import Model.Model;
+import Model.Pacman;
 
-import java.awt.event.KeyListener;
 import java.lang.Integer;
 import java.util.Observable;
 import javax.swing.*;
 import View.CanvasX;
 
+@SuppressWarnings("deprecation")
 public class View implements java.util.Observer {
 
 	private CanvasX canvas;
@@ -20,11 +21,10 @@ public class View implements java.util.Observer {
 	private JFrame frame;
 	private int width;
 	private int height;
-	
+
 	private JTextField cols, input_width, input_height;
 	
 	public View() {
-		
 	}
 	
 	public void createChooser() {
@@ -82,6 +82,8 @@ public class View implements java.util.Observer {
 		frame.setVisible(true);
 		canvas = new CanvasX();
 		frame.add(canvas);
+		canvas.repaint();
+		frame.repaint();
 	}
 	
 	public void MazeDraw(Model m){
@@ -110,6 +112,7 @@ public class View implements java.util.Observer {
 				}
 			}
 		}
+		canvas.addPacman(new Pacman(m.getMaze().getSize()));
 	} 
 	
 	public void addController(controller controller){

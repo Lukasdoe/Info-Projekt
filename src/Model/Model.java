@@ -4,6 +4,7 @@ import Graph.GRAPH_MATRIX;
 
 //Model of the Program
 
+@SuppressWarnings("deprecation")
 public class Model extends java.util.Observable {	
 
 	private Maze maze;

@@ -9,7 +9,8 @@ public class Display {
  static Model m;
  static Keys k;
 
- 	public static void main(String[] args) {
+ 	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
  		//standart Verteilung der enzelnen Komponenten
 		m = new Model();
 		v = new View();
