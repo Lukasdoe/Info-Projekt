@@ -55,25 +55,7 @@ public class Pacman {
 	public void changeDir(dir d) {
 		direction = d;
 	}
-//
-//	private void drawPacmanDown(Graphics g, ImageObserver view) {
-//		g.drawImage(pacman, x, y, view);	
-//		
-//	}
-//
-//	private void drawPacmanUp(Graphics g, ImageObserver view) {
-//		g.drawImage(pacman, x, y, view);	
-//	}
-//
-//	private void drawPacmanRight(Graphics g, ImageObserver view) {
-//		g.drawImage(pacman, x, y, view);	
-//		
-//	}
-//
-//	private void drawPacmanLeft(Graphics g, ImageObserver view) {
-//		g.drawImage(pacman, x, y, view);	
-//		
-//	}
+
 	
 	public int getSize() {
 		return size;

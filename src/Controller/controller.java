@@ -70,10 +70,13 @@ public class controller implements java.awt.event.ActionListener {
 		Maze maze = model.getMaze();
 		
 		for(int i = pac.getY(); i >= 0; i--) {
-			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), pac.getX() + ";" + i)) pac.setCell(maze.getCell(pac.getX(), i));
+			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), pac.getX() + ";" + i)) {
+				pac.changeDir(Pacman.dir.UP);
+				pac.setCell(maze.getCell(pac.getX(), i));
+				view.update();
+				return;
+			}
 		}
-		view.update();
-
 	}
 	
 	protected void MoveRight() {
@@ -82,10 +85,13 @@ public class controller implements java.awt.event.ActionListener {
 		Maze maze = model.getMaze();
 		
 		for(int i = pac.getX(); i < maze.getCols(); i++) {
-			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY())) pac.setCell(maze.getCell(i, pac.getY()));
+			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY())) {
+				pac.changeDir(Pacman.dir.RIGHT);
+				pac.setCell(maze.getCell(i, pac.getY()));
+				view.update();
+				return;
+			}
 		}
-		view.update();
-
 	}
 	
 	protected void MoveDown() {
@@ -94,9 +100,13 @@ public class controller implements java.awt.event.ActionListener {
 		Maze maze = model.getMaze();
 		
 		for(int i = pac.getY(); i < maze.getRows(); i++) {
-			pac.setCell(maze.getCell(1, 3));
+			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), pac.getX() + ";" + i)) {
+				pac.changeDir(Pacman.dir.DOWN);
+				pac.setCell(maze.getCell(pac.getX(), i));
+				view.update();
+				return;
+			}
 		}
-		view.update();
 	}
 
 	protected void MoveLeft() {
@@ -105,9 +115,13 @@ public class controller implements java.awt.event.ActionListener {
 		Maze maze = model.getMaze();
 
 		for(int i = pac.getX(); i >= 0; i--) {
-			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY())) pac.setCell(maze.getCell(i, pac.getY()));
+			System.out.println(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY()));
+			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY())) {
+				pac.changeDir(Pacman.dir.LEFT);
+				pac.setCell(maze.getCell(i, pac.getY()));
+				view.update();
+				return;
+			}
 		}
-		view.update();
-
 	}
 } 

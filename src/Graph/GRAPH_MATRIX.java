@@ -46,8 +46,8 @@ public class GRAPH_MATRIX
 
         if ((vonNummer > -1) && (nachNummer > -1) && 
         (vonNummer != nachNummer)) {
-            if(matrix[vonNummer][nachNummer] != -1) return true;
-            if(matrix[nachNummer][vonNummer] != -1) return true;
+            if(matrix[vonNummer][nachNummer] == 1) return true;
+            if(matrix[nachNummer][vonNummer] == 1) return true;
         }
         return false;
     }
