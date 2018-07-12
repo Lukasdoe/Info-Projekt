@@ -27,8 +27,8 @@ public class controller implements java.awt.event.ActionListener {
 		
 	public void actionPerformed(java.awt.event.ActionEvent e){
 		switch(e.getActionCommand()) {
-		case "go":
-			view.setWindowWidth(view.getWidthTF());
+		case "go": //maze und view klasse ein Labyrinth erzeugen lassen
+			view.setWindowWidth(view.getWidthTF()); 
 			view.setWindowsHeight(view.getHeightTF());
 			MakeMaze(view.getColsTF());
 			view.createDrawing(keys);
@@ -64,13 +64,16 @@ public class controller implements java.awt.event.ActionListener {
 		} 
 	}
 	
+	//alle Move Methoden suchen nach einem möglichen Knoten in der Richtung, in die sich bewegt werden soll
+	
 	protected void MoveUp() {
-		Pacman pac = view.getPac();
+		Pacman pac = view.getPac(); //ein paar nötige Objekte einholen
 		GRAPH_MATRIX graph = model.getGraph();
 		Maze maze = model.getMaze();
 		
-		for(int i = pac.getY(); i >= 0; i--) {
-			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), pac.getX() + ";" + i)) {
+		for(int i = pac.getY() - 1; i >= 0; i--) { //alle Knoten durchgehen, die nach Oben vom Pacman aus gehen könnten und schauen, ob da mögliche kanten sind
+		  //erklärung der abfrage: Knoten im Graphen haben immer als Namen: X-Koordinate ; Y-Koordinate
+			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), pac.getX() + ";" + i)) { //kante zwischen jetziger Position gefunden, Pacman dorthin setzen und view updaten
 				pac.changeDir(Pacman.dir.UP);
 				pac.setCell(maze.getCell(pac.getX(), i));
 				view.update();
@@ -84,7 +87,7 @@ public class controller implements java.awt.event.ActionListener {
 		GRAPH_MATRIX graph = model.getGraph();
 		Maze maze = model.getMaze();
 		
-		for(int i = pac.getX(); i < maze.getCols(); i++) {
+		for(int i = pac.getX() + 1; i < maze.getCols(); i++) {
 			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY())) {
 				pac.changeDir(Pacman.dir.RIGHT);
 				pac.setCell(maze.getCell(i, pac.getY()));
@@ -99,7 +102,7 @@ public class controller implements java.awt.event.ActionListener {
 		GRAPH_MATRIX graph = model.getGraph();
 		Maze maze = model.getMaze();
 		
-		for(int i = pac.getY(); i < maze.getRows(); i++) {
+		for(int i = pac.getY() + 1; i < maze.getRows(); i++) {
 			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), pac.getX() + ";" + i)) {
 				pac.changeDir(Pacman.dir.DOWN);
 				pac.setCell(maze.getCell(pac.getX(), i));
@@ -114,8 +117,7 @@ public class controller implements java.awt.event.ActionListener {
 		GRAPH_MATRIX graph = model.getGraph();
 		Maze maze = model.getMaze();
 
-		for(int i = pac.getX(); i >= 0; i--) {
-			System.out.println(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY()));
+		for(int i = pac.getX() - 1; i >= 0; i--) {
 			if(graph.IstVerbunden(pac.getX() + ";" + pac.getY(), i + ";" + pac.getY())) {
 				pac.changeDir(Pacman.dir.LEFT);
 				pac.setCell(maze.getCell(i, pac.getY()));
