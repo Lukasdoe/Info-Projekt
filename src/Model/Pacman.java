@@ -17,9 +17,12 @@ public class Pacman {
 	private dir direction;
 	private int size;
 	
-	private BufferedImage pacman;
+	private BufferedImage pacmanUP;
+	private BufferedImage pacmanDOWN;
+	private BufferedImage pacmanLEFT;
+	private BufferedImage pacmanRIGHT;
 	
-	public enum dir{
+	public enum dir{ //verschieden Richtungen
 		UP,
 		LEFT,
 		RIGHT,
@@ -28,11 +31,15 @@ public class Pacman {
 	
 	public Pacman(int _size){
 		currCell = new Cell(0,0,0);
-		try{
-			pacman = ImageIO.read(new File("images/pacman.png"));
+		try{ //verschiedene Bilder laden
+			pacmanUP = ImageIO.read(new File("images/pacmanUP.png"));
+			pacmanDOWN = ImageIO.read(new File("images/pacmanDOWN.png"));
+			pacmanLEFT = ImageIO.read(new File("images/pacmanLEFT.png"));
+			pacmanRIGHT = ImageIO.read(new File("images/pacmanRIGHT.png"));
 		}
 		catch(Exception e){}
 		size = _size;
+		direction = dir.DOWN;
 	}
 	
 	public int getX() {
@@ -43,8 +50,18 @@ public class Pacman {
 		return currCell.getY();
 	}
 	
-	public BufferedImage getImage() {
-		return pacman;
+	public BufferedImage getImage() { //Bilder zum darstellen geben
+	    switch(direction){
+	      case UP:
+	        return pacmanUP;
+	      case DOWN:
+	        return pacmanDOWN;
+	      case LEFT:
+	        return pacmanLEFT;
+	      case RIGHT:
+	        return pacmanRIGHT;
+	    }
+		return null;
 	}
 	
 	public void setCell(Cell curr) {
