@@ -40,7 +40,7 @@ public class GRAPH_MATRIX
         }
     }
     
-    public boolean IstVerbunden(String von, String nach) {
+    public boolean IstVerbunden(String von, String nach) { //kontrolle ob Kante zwischen zwei Knoten existiert
     	int vonNummer = KnotenNummerGeben(von);
         int nachNummer = KnotenNummerGeben(nach);
 
