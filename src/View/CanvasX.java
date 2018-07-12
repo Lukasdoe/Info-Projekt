@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import Model.Cell;
 import Model.Pacman;
 
 public class CanvasX extends JComponent{
@@ -24,16 +25,22 @@ public class CanvasX extends JComponent{
 		shapes = new ArrayList<Shape> ();
 	}
             
-	void AddLine(int i, int j, int k, int l){
+	public void AddLine(int i, int j, int k, int l){
 		shapes.add(new Line2D.Double(new Point(i,j),new Point(k,l)));
 	}
 	
-	void reDraw(Graphics g) {
+	public void reDraw(Graphics g) {
 		repaint();
 	}
 	
-	void addPacman(Pacman pac_) {
+	public void addPacman(Pacman pac_) {
 		pac = pac_;
+	}
+	
+	public void updatePacman(Pacman.dir dir, Cell newCell) {
+		pac.changeDir(dir);
+		pac.setCell(newCell);
+		
 	}
 
 	protected void paintComponent ( Graphics g ){

@@ -21,6 +21,7 @@ public class View implements java.util.Observer {
 	private JFrame frame;
 	private int width;
 	private int height;
+	private Pacman pac;
 
 	private JTextField cols, input_width, input_height;
 	
@@ -72,9 +73,14 @@ public class View implements java.util.Observer {
         f.setVisible(true);  
 	}
 	
-	public void createDrawing() {
+	public void update() {
+		canvas.repaint();
+		frame.repaint();
+	}
+	
+	public void createDrawing(Keys keys) {
 		frame = new JFrame("MazeRunner");
-		frame.addKeyListener(new Keys());
+		frame.addKeyListener(keys);
 		m = new Model();
 		frame.addWindowListener(new Controller.controller.CloseListener());	
 		frame.setSize(width, height);
@@ -112,7 +118,8 @@ public class View implements java.util.Observer {
 				}
 			}
 		}
-		canvas.addPacman(new Pacman(m.getMaze().getSize()));
+		pac = new Pacman(m.getMaze().getSize());
+		canvas.addPacman(pac);
 	} 
 	
 	public void addController(controller controller){
@@ -165,6 +172,14 @@ public class View implements java.util.Observer {
  
 	public void update(Observable arg0, Object arg1) {
 		
+	}
+	
+	public void updatePacman(Pacman.dir dir, Cell newCell) {
+		canvas.updatePacman(dir, newCell);
+	}
+	
+	public  Pacman getPac() {
+		return pac;
 	}
 }
  

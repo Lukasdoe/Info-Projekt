@@ -6,25 +6,39 @@ public class Keys implements java.awt.event.KeyListener{
 	
 	private controller c;
 	
-	public Keys() {}
+	public Keys(controller control) {
+		c = control;
+	}
 	
 	public void addController(controller controller) {
 		c = controller;
 	}
 	
-	public void keyPressed(KeyEvent arg0) {	}
+	public void keyPressed(KeyEvent arg0) {	
+		
+	}
 
-	public void keyReleased(KeyEvent arg0) { }
+	public void keyReleased(KeyEvent arg0) { 
+		setEvent(arg0.getKeyChar());
+	}
 
 	public void keyTyped(KeyEvent arg0) {
-		switch(arg0.getKeyCode()) {
-		case 37:
+
+	}
+	
+	public void setEvent(char e) {
+		switch(e) {
+		case 'a':
+			c.MoveLeft();
 			break;
-		case 38:
+		case 'w':
+			c.MoveUp();
 			break;
-		case 39:
+		case 'd':
+			c.MoveRight();
 			break;
-		case 40:
+		case 's':
+			c.MoveDown();
 			break;
 		}
 	}

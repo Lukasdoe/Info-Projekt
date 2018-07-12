@@ -39,6 +39,18 @@ public class GRAPH_MATRIX
             matrix[nachNummer][vonNummer] = gewicht;
         }
     }
+    
+    public boolean IstVerbunden(String von, String nach) {
+    	int vonNummer = KnotenNummerGeben(von);
+        int nachNummer = KnotenNummerGeben(nach);
+
+        if ((vonNummer > -1) && (nachNummer > -1) && 
+        (vonNummer != nachNummer)) {
+            if(matrix[vonNummer][nachNummer] != -1) return true;
+            if(matrix[nachNummer][vonNummer] != -1) return true;
+        }
+        return false;
+    }
 
     public int KnotenNummerGeben(String bezeichner)  {
         int erg = -1;
