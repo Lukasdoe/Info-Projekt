@@ -80,7 +80,7 @@ public class View implements java.util.Observer {
 	
 	public void createDrawing(Keys keys) {
 		frame = new JFrame("MazeRunner");
-		frame.addKeyListener(keys);
+		frame.addKeyListener(keys); //key controls aktivieren
 		m = new Model();
 		frame.addWindowListener(new Controller.controller.CloseListener());	
 		frame.setSize(width, height);
@@ -118,7 +118,7 @@ public class View implements java.util.Observer {
 				}
 			}
 		}
-		pac = new Pacman(m.getMaze().getSize());
+		pac = new Pacman(m.getMaze().getSize()); //pacman initialisieren
 		canvas.addPacman(pac);
 	} 
 	
@@ -175,7 +175,7 @@ public class View implements java.util.Observer {
 	}
 	
 	public void updatePacman(Pacman.dir dir, Cell newCell) {
-		canvas.updatePacman(dir, newCell);
+		canvas.updatePacman(dir, newCell); //pacman updaten
 	}
 	
 	public  Pacman getPac() {

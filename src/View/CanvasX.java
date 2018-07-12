@@ -26,7 +26,7 @@ public class CanvasX extends JComponent{
 	}
             
 	public void AddLine(int i, int j, int k, int l){
-		shapes.add(new Line2D.Double(new Point(i,j),new Point(k,l)));
+		shapes.add(new Line2D.Double(new Point(i,j),new Point(k,l))); //linie dazufügen
 	}
 	
 	public void reDraw(Graphics g) {
@@ -39,8 +39,7 @@ public class CanvasX extends JComponent{
 	
 	public void updatePacman(Pacman.dir dir, Cell newCell) {
 		pac.changeDir(dir);
-		pac.setCell(newCell);
-		
+		pac.setCell(newCell);	
 	}
 
 	protected void paintComponent ( Graphics g ){
@@ -50,6 +49,6 @@ public class CanvasX extends JComponent{
 			g2d.draw(shape);
 		}
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(pac.getImage(), pac.getX() * pac.getSize(), pac.getY() * pac.getSize(), pac.getSize(), pac.getSize(), this);
+		g2.drawImage(pac.getImage(), pac.getX() * pac.getSize(), pac.getY() * pac.getSize(), pac.getSize(), pac.getSize(), this); //pacman in canvas einzeichnen
 	}
 } 
