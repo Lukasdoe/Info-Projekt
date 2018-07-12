@@ -50,44 +50,30 @@ public class Pacman {
 	public void setCell(Cell curr) {
 		currCell = curr;
 	}
-	
-	public void setGraphics(int cellsize, JFrame view) {
-		x = currCell.getX();
-		y = currCell.getY() * cellsize + cellsize / 2;
-//			
-//		if (direction == dir.LEFT) {
-//            drawPacmanLeft(g, view);
-//        } else if (direction == dir.RIGHT) {
-//            drawPacmanRight(g, view);
-//        } else if (direction == dir.UP) {
-//            drawPacmanUp(g, view);
-//        } else {
-//            drawPacmanDown(g, view);
-//        }
-	}
+
 	
 	public void changeDir(dir d) {
 		direction = d;
 	}
-
-	private void drawPacmanDown(Graphics g, ImageObserver view) {
-		g.drawImage(pacman, x, y, view);	
-		
-	}
-
-	private void drawPacmanUp(Graphics g, ImageObserver view) {
-		g.drawImage(pacman, x, y, view);	
-	}
-
-	private void drawPacmanRight(Graphics g, ImageObserver view) {
-		g.drawImage(pacman, x, y, view);	
-		
-	}
-
-	private void drawPacmanLeft(Graphics g, ImageObserver view) {
-		g.drawImage(pacman, x, y, view);	
-		
-	}
+//
+//	private void drawPacmanDown(Graphics g, ImageObserver view) {
+//		g.drawImage(pacman, x, y, view);	
+//		
+//	}
+//
+//	private void drawPacmanUp(Graphics g, ImageObserver view) {
+//		g.drawImage(pacman, x, y, view);	
+//	}
+//
+//	private void drawPacmanRight(Graphics g, ImageObserver view) {
+//		g.drawImage(pacman, x, y, view);	
+//		
+//	}
+//
+//	private void drawPacmanLeft(Graphics g, ImageObserver view) {
+//		g.drawImage(pacman, x, y, view);	
+//		
+//	}
 	
 	public int getSize() {
 		return size;

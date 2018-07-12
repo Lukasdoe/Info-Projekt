@@ -50,6 +50,6 @@ public class CanvasX extends JComponent{
 			g2d.draw(shape);
 		}
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(pac.getImage(), pac.getX(), pac.getY(), pac.getSize(), pac.getSize(), this);
+		g2.drawImage(pac.getImage(), pac.getX() * pac.getSize(), pac.getY() * pac.getSize(), pac.getSize(), pac.getSize(), this);
 	}
 } 
