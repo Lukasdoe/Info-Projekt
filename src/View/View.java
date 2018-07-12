@@ -7,6 +7,8 @@ import Controller.controller;
 import Model.Model;
 import Model.Pacman;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.lang.Integer;
 import java.util.Observable;
 import javax.swing.*;
@@ -37,26 +39,65 @@ public class View implements java.util.Observer {
 	    
         JFrame f= new JFrame();
         
-        cols = new JTextField("10", 1);  
+        cols = new JTextField("Integer: 2 entspricht 2x2", 1);  
         cols.setBounds(100,50,150,20);  
         cols.addActionListener(c);
         cols.setActionCommand("cols_input");
+        cols.addFocusListener(new FocusListener() {
+        	
+            public void focusGained(FocusEvent e) {
+            	cols.setText("");
+            }
+
+            public void focusLost(FocusEvent e) {
+	            if(cols.getText().trim().equals("")) {
+	            	cols.setText("Integer: 2 entspricht 2x2"); 
+	            }
+            }
+        });
+
         JLabel spalte = new JLabel();
-        spalte.setText("Geben Sie hier die Anzahl der Reihen an");
+        spalte.setText("Geben Sie hier die Anzahl an Kästchen an");
         spalte.setBounds(100-70,50-25, 300, 20);
         
-        input_width = new JTextField("800", 1);  
+        input_width = new JTextField("Integer: z.B. 800", 1);  
         input_width.setBounds(100,100,150,20);
         input_width.addActionListener(c);
         input_width.setActionCommand("input_width");
+        input_width.addFocusListener(new FocusListener() {
+        	
+            public void focusGained(FocusEvent e) {
+            	input_width.setText("");
+            }
+            
+            public void focusLost(FocusEvent e) {
+	            if(input_width.getText().trim().equals("")) {
+	            	input_width.setText("Integer: z.B. 800"); 
+	            }
+            }
+        });
+ 
         JLabel weite = new JLabel();
         weite.setText("Geben Sie hier die Weite des Labyrinths an");
         weite.setBounds(100-70,100-25, 300, 20);
         
-        input_height = new JTextField("800", 1);  
+        input_height = new JTextField("Integer: z.B. 800", 1);  
         input_height.setBounds(100,150,150,20); 
         input_height.addActionListener(c);
         input_height.setActionCommand("input_height");
+        input_height.addFocusListener(new FocusListener() {
+        	
+            public void focusGained(FocusEvent e) {
+            	input_height.setText("");
+            }
+
+            public void focusLost(FocusEvent e) {
+	            if(input_height.getText().trim().equals("")) {
+	            	input_height.setText("Integer: z.B. 800"); 
+	            }
+            }
+        });
+
         JLabel hoehe = new JLabel();
         hoehe.setText("Geben Sie hier die Hoehe des Labyrinths an");
         hoehe.setBounds(100-70,150-25, 300, 20);
